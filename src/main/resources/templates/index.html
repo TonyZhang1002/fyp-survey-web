@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
@@ -25,11 +25,13 @@
 							<label class="fs-field-label fs-anim-upper" for="q1">能否告诉我你的名字吖?</label>
 							<input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Dean Moriarty" required/>
 						</li>
-						<li data-input-trigger>
+						<li data-input-trigger style="bottom: 260px">
 							<label class="fs-field-label fs-anim-upper" for="q3" data-info="This will help us know what kind of service you need">你觉得下面三张深度学习上色照片哪一张效果更精准?</label>
-							<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+                            <div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower" align="center" style="padding: 0 65px 15px 0;">
+                                <img th:src="@{'/img/'+ ${imgName} + '.png'}">
+                            </div>
+							<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower" style="width: 400px;margin: auto;">
 								<span><input id="q3b" name="q3" type="radio" value="conversion"/><label for="q3b" class="radio-conversion">Sell things</label></span>
-								<span><input id="q3c" name="q3" type="radio" value="social"/><label for="q3c" class="radio-social">Become famous</label></span>
 								<span><input id="q3a" name="q3" type="radio" value="mobile"/><label for="q3a" class="radio-mobile">Mobile market</label></span>
 							</div>
 						</li>
