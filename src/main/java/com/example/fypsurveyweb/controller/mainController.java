@@ -10,9 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 */
 @Controller
 public class mainController {
-   @GetMapping("/123")
+   @GetMapping("")
    public String formPage(Model model) {
-      model.addAttribute("imgName", "2-gan");
+      int randomImg = (int) (Math.random() * 17);
+      int randomTag = (int) (Math.random() * 4);
+      switch (randomTag) {
+         case 0:  model.addAttribute("imgName", randomImg + "-ord.jpg");
+         case 1:  model.addAttribute("imgName", randomImg + "-ori.jpg");
+         case 2:  model.addAttribute("imgName", randomImg + "-gan.png");
+         case 3:  model.addAttribute("imgName", randomImg + "-res.png");
+         default:
+      }
       return "index";
    }
 }
