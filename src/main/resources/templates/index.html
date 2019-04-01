@@ -18,11 +18,20 @@
     <input type="text" name="name" id="name"/><br>
     <label for="email">Please enter your email:</label><br>
     <input type="text" name="email" id="email"/><br>
+
     <h2>Part One</h2>
     <label>1. Real or Fake?</label><br>
-    <img th:src="@{'/img/'+${imgName}}"><br>
+    <img th:src="@{'/img/'+${imgName10}}"><br>
     <input type="radio" name="q1" id="q1-0" value="Real">It is Real.<br>
     <input type="radio" name="q1" id="q1-1" value="Fake">It is Colourised by AI.<br>
+
+    <h2>Part Two</h2>
+    <label>2. Your Rate?</label><br>
+    <img th:src="@{'/img/'+${imgName20}}"><br>
+    <input type="radio" name="q2" id="q2-0" value="One">★<br>
+    <input type="radio" name="q2" id="q2-1" value="Two">★ ★<br>
+    <input type="radio" name="q2" id="q2-2" value="Three">★ ★ ★<br>
+    <input type="radio" name="q2" id="q2-3" value="Four">★ ★ ★ ★<br>
     <input type="submit" value="submit">
 </form>
 </body>
