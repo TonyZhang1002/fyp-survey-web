@@ -3,6 +3,7 @@ package com.example.fypsurveyweb.controller;
 import com.example.fypsurveyweb.FypSurveyWebApplication;
 import com.example.fypsurveyweb.domain.UserAnswer;
 import com.example.fypsurveyweb.service.mainService;
+import com.example.fypsurveyweb.service.randomGenerateImageNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class mainController {
    public static List<Integer> preventDup = new ArrayList<>();
    @Autowired
    private mainService ms;
+   @Autowired
+   private randomGenerateImageNames rgin;
 
    @RequestMapping(value = "/surveyForm", method = RequestMethod.GET)
    public String formPage(Model model) {
@@ -36,28 +39,13 @@ public class mainController {
          FypSurveyWebApplication.initFlag = false;
       }
 
-      for (int m = 0; m < 101; m++) {
-         preventDup.add(m);
-      }
+      rgin.initRandomNames();
 
       for (int i = 1; i <= 2; i++) {
          for (int j = 1; j <= 5; j++) {
-            int randomImgIndex = (int) (Math.random() * (preventDup.size() - 1));
-            int randomTag = (int) (Math.random() * 4);
-            int randomImg = preventDup.get(randomImgIndex);
-            //System.out.println(randomImg);
-            if (picNum.size() > 9) picNum.clear();
-            picNum.add(randomImg + "-" + randomTag);
-            switch (randomTag) {
-               case 0:  model.addAttribute("imgName" + i + "" + j, randomImg + "-ori.jpg");  break;
-               case 1:  model.addAttribute("imgName" + i + "" + j, randomImg + "-ord.jpg");  break;
-               case 2:  model.addAttribute("imgName" + i + "" + j, randomImg + "-gan.png");  break;
-               case 3:  model.addAttribute("imgName" + i + "" + j, randomImg + "-res.png");  break;
-            }
-            preventDup.remove(randomImgIndex);
+            model.addAttribute("imgName" + i + "" + j, rgin.getPicNumFrontend()[i-1][j-1]);
          }
       }
-
 
       return "index";
    }

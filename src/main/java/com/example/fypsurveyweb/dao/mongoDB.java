@@ -17,7 +17,7 @@ import java.util.List;
 */
 public class mongoDB {
 
-   MongoClient mongo = new MongoClient("db", 27017);
+   MongoClient mongo = new MongoClient("localhost", 27017);
 
    // This method is used to keep the connection with the database
    public MongoCollection<Document> getTable () {
