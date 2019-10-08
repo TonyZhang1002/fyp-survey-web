@@ -43,4 +43,8 @@ public class mongoDB {
       getTable().updateOne(Filters.eq("pic", picBackend), new Document("$inc",new Document(key,value)));
    }
 
+   public MongoCursor<Document> getMongoCursor () {
+      FindIterable<Document> findIterable = getTable().find();
+      return findIterable.iterator();
+   }
 }

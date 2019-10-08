@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -56,7 +54,7 @@ public class mainController {
 
    @RequestMapping(value = "/submitForm", method = RequestMethod.POST)
    public String getInfo(@ModelAttribute UserAnswer userAnswer) {
-      userAnswer.setPicNum(rgin.getImageNamesBackend());
+      userAnswer.setImageNames(rgin.getImageNamesBackend());
       ms.addResult(userAnswer);
       System.out.println(rgin.getImageNamesBackend());
       // Clear the pic names

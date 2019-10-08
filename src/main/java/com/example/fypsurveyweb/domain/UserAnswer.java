@@ -1,7 +1,6 @@
 package com.example.fypsurveyweb.domain;
 
 import java.util.List;
-import java.util.Map;
 
 /*
 @author Qinyuan Zhang
@@ -20,7 +19,7 @@ public class UserAnswer {
    private String q8;
    private String q9;
    private String q10;
-   private List<String> picNum;
+   private List<String> imageNames;
 
    public String getName() {
       return name;
@@ -70,8 +69,8 @@ public class UserAnswer {
       return q10;
    }
 
-   public List<String> getPicNum() {
-      return picNum;
+   public List<String> getImageNames() {
+      return imageNames;
    }
 
    public String[] wrapperOfAnswers() {
@@ -126,7 +125,7 @@ public class UserAnswer {
       this.q10 = q10;
    }
 
-   public void setPicNum(List<String> picNum) {
-      this.picNum = picNum;
+   public void setImageNames(List<String> imageNames) {
+      this.imageNames = imageNames;
    }
 }
