@@ -7,7 +7,6 @@ import com.example.fypsurveyweb.service.randomGenerateImageNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +22,6 @@ import java.util.Map;
 @Controller
 public class mainController {
 
-   public static List<String> picNum = new ArrayList<>();
-   public static List<Integer> preventDup = new ArrayList<>();
    @Autowired
    private mainService ms;
    @Autowired
@@ -41,21 +38,26 @@ public class mainController {
 
       rgin.initRandomNames();
 
-      for (int i = 1; i <= 2; i++) {
-         for (int j = 1; j <= 5; j++) {
-            model.addAttribute("imgName" + i + "" + j, rgin.getPicNumFrontend()[i-1][j-1]);
-         }
-      }
+      model.addAttribute("imageNamesFrontend", rgin.getImageNamesFrontend());
+      model.addAttribute("RealText", "It is Real.");
+      model.addAttribute("FakeText", "It is Colourised by AI.");
+      model.addAttribute("HintStarText", "Your Rate?");
+      model.addAttribute("OneStarText", "*");
+      model.addAttribute("TwoStarText", "* *");
+      model.addAttribute("ThreeStarText", "* * *");
+      model.addAttribute("FourStarText", "* * * *");
+
 
       return "index";
    }
 
    @RequestMapping(value = "/submitForm", method = RequestMethod.POST)
    public String getInfo(@ModelAttribute UserAnswer userAnswer) {
-      userAnswer.setPicNum(picNum);
+      userAnswer.setPicNum(rgin.getImageNamesBackend());
       ms.addResult(userAnswer);
-      System.out.println(picNum);
-      picNum.clear();
+      System.out.println(rgin.getImageNamesBackend());
+      // Clear the pic names
+      rgin.clearImageNames();
       return "success";
    }
 
