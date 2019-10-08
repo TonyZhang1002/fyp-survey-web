@@ -24,14 +24,14 @@
     <label></label><br>
     <ul th:each="imageNameFrontend,Stat : ${imageNamesFrontend}">
         <li>
-            <img th:src="@{'/img/'+${imageNameFrontend}}"><br>
-            <input type="radio" th:if = "${Stat.count} <= 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="'q' + (${Stat.count}) + 'Real'" required="required" th:text = "${RealText}"><br>
-            <input type="radio" th:if = "${Stat.count} <= 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-1'" th:value="'q' + (${Stat.count}) + 'False'" required="required" th:text =  "${FakeText}"><br>
-            <p th:if = "${Stat.count} > 5" th:text = "${HintStarText}"></p><br>
-            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="One" required="required" th:text = "${OneStarText}"><br>
-            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Two" required="required" th:text = "${TwoStarText}"><br>
-            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Three" required="required" th:text = "${ThreeStarText}"><br>
-            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Four" required="required" th:text = "${FourStarText}"><br>
+            <img th:src="@{'/img/'+${imageNameFrontend}}"><br th:if = "${Stat.count} <= 5">
+            <input type="radio" th:if = "${Stat.count} <= 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="'q' + (${Stat.count}) + 'Real'" required="required" th:text = "${RealText}"><br th:if = "${Stat.count} <= 5">
+            <input type="radio" th:if = "${Stat.count} <= 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-1'" th:value="'q' + (${Stat.count}) + 'False'" required="required" th:text =  "${FakeText}"><br th:if = "${Stat.count} <= 5">
+            <p th:if = "${Stat.count} > 5" th:text = "${HintStarText}"></p>
+            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="One" required="required" th:text = "${OneStarText}"><br th:if = "${Stat.count} > 5">
+            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Two" required="required" th:text = "${TwoStarText}"><br th:if = "${Stat.count} > 5">
+            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Three" required="required" th:text = "${ThreeStarText}"><br th:if = "${Stat.count} > 5">
+            <input type="radio" th:if = "${Stat.count} > 5" th:name="q + (${Stat.count})" th:id="'q' + (${Stat.count}) + '-0'" th:value="Four" required="required" th:text = "${FourStarText}"><br th:if = "${Stat.count} > 5">
         </li>
     </ul>
     <input type="submit" value="submit">

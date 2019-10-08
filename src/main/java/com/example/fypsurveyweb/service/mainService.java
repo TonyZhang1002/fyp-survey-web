@@ -2,7 +2,6 @@ package com.example.fypsurveyweb.service;
 
 import com.example.fypsurveyweb.dao.mongoDB;
 import com.example.fypsurveyweb.domain.UserAnswer;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -16,13 +15,16 @@ import java.util.*;
 @Service
 public class mainService {
 
-   private mongoDB mDB = new mongoDB();
+   // Use the singleton instance
+   private mongoDB mDB = mongoDB.getInstance();
 
+   // A method to init the DB
    public void initDB() {
       mDB.initDB();
    }
 
-   public void addResult(UserAnswer userAnswer) {
+   // A method to add results to the DB
+   public void addResults (UserAnswer userAnswer) {
 
       int picIndex = 1;
       for (String pic : userAnswer.getImageNames()) {
@@ -37,13 +39,14 @@ public class mainService {
          }
          // If we are talking about the second kind of questions
          else {
-            addRate(userAnswer.wrapperOfAnswers()[picIndex - 1],pic);
+            addRates(userAnswer.wrapperOfAnswers()[picIndex - 1],pic);
          }
          picIndex++;
       }
    }
 
-   public void addRate(String result, String pic) {
+   // A method to add rates to the DB
+   public void addRates (String result, String pic) {
       switch (result) {
          case "One":
             mDB.updateOneInDB(pic, "Rate", 1);
@@ -61,6 +64,7 @@ public class mainService {
       mDB.updateOneInDB(pic, "2Involve", 1);
    }
 
+   // A method to get results from the DB
    public Map<String, Map<String, Integer>> getResults() {
 
       Map<String, Map<String, Integer>> results = new TreeMap<>();

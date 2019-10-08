@@ -55,7 +55,7 @@ public class mainController {
    @RequestMapping(value = "/submitForm", method = RequestMethod.POST)
    public String getInfo(@ModelAttribute UserAnswer userAnswer) {
       userAnswer.setImageNames(rgin.getImageNamesBackend());
-      ms.addResult(userAnswer);
+      ms.addResults(userAnswer);
       System.out.println(rgin.getImageNamesBackend());
       // Clear the pic names
       rgin.clearImageNames();

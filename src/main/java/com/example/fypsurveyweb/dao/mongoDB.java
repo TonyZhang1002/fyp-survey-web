@@ -17,6 +17,15 @@ import java.util.List;
 */
 public class mongoDB {
 
+   // Create a singleton instance
+   private final static mongoDB instance = new mongoDB();
+
+   private mongoDB () {}
+
+   public static mongoDB getInstance() {
+      return instance;
+   }
+
    MongoClient mongo = new MongoClient("localhost", 27017);
 
    // This method is used to keep the connection with the database
