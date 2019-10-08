@@ -56,4 +56,10 @@ public class MongoDB {
       FindIterable<Document> findIterable = getTable().find();
       return findIterable.iterator();
    }
+
+   public void closeConnection () {
+      if (mongo != null) {
+         mongo.close();
+      }
+   }
 }

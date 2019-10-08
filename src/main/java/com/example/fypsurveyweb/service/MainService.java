@@ -123,4 +123,7 @@ public class MainService {
               (Integer) currentCursor.get(InvolveInSecondKindQuestions) :  (Integer) currentCursor.get(InvolveInSecondKindQuestions));
    }
 
+   public void closeConnectionWithDB () {
+      mDB.closeConnection();
+   }
 }

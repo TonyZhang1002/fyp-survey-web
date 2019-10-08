@@ -2,7 +2,6 @@ package com.example.fypsurveyweb.service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +17,7 @@ public class RandomGenerateImageNames {
 
         imageNamesBackend = new LinkedList<>();
         imageNamesFrontend = new LinkedList<>();
-        List<Integer> preventDup = new ArrayList<>();
+        List<Integer> preventDup = new LinkedList<>();
 
         // Add all the possible image numbers to the list
         for (int m = 0; m < 101; m++) {
