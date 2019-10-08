@@ -2,14 +2,12 @@ package com.example.fypsurveyweb.controller;
 
 import com.example.fypsurveyweb.FypSurveyWebApplication;
 import com.example.fypsurveyweb.domain.UserAnswer;
-import com.example.fypsurveyweb.service.mainService;
-import com.example.fypsurveyweb.service.randomGenerateImageNames;
+import com.example.fypsurveyweb.service.MainService;
+import com.example.fypsurveyweb.service.RandomGenerateImageNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -18,19 +16,18 @@ import java.util.Map;
 @date 06/02/2019
 */
 @Controller
-public class mainController {
+public class MainController {
 
    @Autowired
-   private mainService ms;
+   private MainService ms;
    @Autowired
-   private randomGenerateImageNames rgin;
+   private RandomGenerateImageNames rgin;
 
-   @RequestMapping(value = "/surveyForm", method = RequestMethod.GET)
+   @GetMapping(value = "/surveyForm")
    public String formPage(Model model) {
 
       // init database in the beginning
       if (FypSurveyWebApplication.initFlag) {
-         System.out.println("Init Database!");
          ms.initDB();
          FypSurveyWebApplication.initFlag = false;
       }
@@ -52,22 +49,19 @@ public class mainController {
       return "index";
    }
 
-   @RequestMapping(value = "/submitForm", method = RequestMethod.POST)
+   @PostMapping(value = "/submitForm")
    public String getInfo(@ModelAttribute UserAnswer userAnswer) {
       userAnswer.setImageNames(rgin.getImageNamesBackend());
       ms.addResults(userAnswer);
-      System.out.println(rgin.getImageNamesBackend());
       // Clear the pic names
       rgin.clearImageNames();
       return "success";
    }
 
-   @RequestMapping(value = "/check", method = RequestMethod.GET)
+   @GetMapping(value = "/check")
    public String check(Model model) {
       Map<String, Map<String, Integer>> results = ms.getResults();
-      //System.out.println(results.size());
       model.addAttribute("resultsMap", results);
-      // System.out.println(results.get("4-1"));
       return "check";
    }
 }

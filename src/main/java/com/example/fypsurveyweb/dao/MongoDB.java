@@ -15,14 +15,14 @@ import java.util.List;
 @author Qinyuan Zhang
 @date 01/04/2019
 */
-public class mongoDB {
+public class MongoDB {
 
    // Create a singleton instance
-   private final static mongoDB instance = new mongoDB();
+   private static final MongoDB instance = new MongoDB();
 
-   private mongoDB () {}
+   private MongoDB() {}
 
-   public static mongoDB getInstance() {
+   public static MongoDB getInstance() {
       return instance;
    }
 

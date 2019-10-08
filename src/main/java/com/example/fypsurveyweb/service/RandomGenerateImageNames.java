@@ -5,19 +5,20 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 @Service
-public class randomGenerateImageNames {
+public class RandomGenerateImageNames {
 
     private List<String> imageNamesBackend;
     private List<String> imageNamesFrontend;
-    private List<Integer> preventDup;
+    private Random random = new Random();
 
     public void initRandomNames () {
 
         imageNamesBackend = new LinkedList<>();
         imageNamesFrontend = new LinkedList<>();
-        preventDup = new ArrayList<>();
+        List<Integer> preventDup = new ArrayList<>();
 
         // Add all the possible image numbers to the list
         for (int m = 0; m < 101; m++) {
@@ -28,9 +29,9 @@ public class randomGenerateImageNames {
         for (int i = 1; i <= 2; i++) {
             for (int j = 1; j <= 5; j++) {
                 // Random an index in the possible list
-                int randomImgIndex = (int) (Math.random() * (preventDup.size() - 1));
+                int randomImgIndex = random.nextInt(preventDup.size() - 1);
                 // Random which kind of images we want
-                int randomTag = (int) (Math.random() * 4);
+                int randomTag = random.nextInt(4);
                 // Get the random image numbers
                 int randomImg = preventDup.get(randomImgIndex);
                 // Add to the backend image names list (like "24-2")
@@ -41,6 +42,7 @@ public class randomGenerateImageNames {
                     case 1:  imageNamesFrontend.add(randomImg  + "-ord.jpg");  break;
                     case 2:  imageNamesFrontend.add(randomImg  + "-gan.png");  break;
                     case 3:  imageNamesFrontend.add(randomImg  + "-res.png");  break;
+                    default: break;
                 }
                 // Remove this image from the possible image names list
                 preventDup.remove(randomImgIndex);
