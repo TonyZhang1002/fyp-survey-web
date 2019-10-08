@@ -30,58 +30,19 @@ public class mainService {
 
       int picIndex = 1;
       for (String pic : userAnswer.getPicNum()) {
-         switch (picIndex) {
-            case 1:
-               if (userAnswer.getQ1().equals("q1Real"))
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Real",1)));
-               else
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Fake",1)));
-               mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("1Involve",1)));
-               break;
-            case 2:
-               if (userAnswer.getQ2().equals("q2Real"))
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Real",1)));
-               else
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Fake",1)));
-               mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("1Involve",1)));
-               break;
-            case 3:
-               if (userAnswer.getQ3().equals("q3Real"))
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Real",1)));
-               else
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Fake",1)));
-               mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("1Involve",1)));
-               break;
-            case 4:
-               if (userAnswer.getQ4().equals("q4Real"))
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Real",1)));
-               else
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Fake",1)));
-               mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("1Involve",1)));
-               break;
-            case 5:
-               if (userAnswer.getQ5().equals("q5Real"))
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Real",1)));
-               else
-                  mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Fake",1)));
-               mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("1Involve",1)));
-               break;
-            case 6:
-               addRate(userAnswer.getQ6(), pic);
-               break;
-            case 7:
-               addRate(userAnswer.getQ7(), pic);
-               break;
-            case 8:
-               addRate(userAnswer.getQ8(), pic);
-               break;
-            case 9:
-               addRate(userAnswer.getQ9(), pic);
-               break;
-            case 10:
-               addRate(userAnswer.getQ10(), pic);
-               break;
-      }
+         // If we are talking about the first kind of questions
+         if (picIndex <=5) {
+            if (userAnswer.wrapperOfAnswers()[picIndex - 1].equals("q" + picIndex +"Real")) {
+               mDB.updateOneInDB(pic, "Real", 1);
+            } else {
+               mDB.updateOneInDB(pic, "Fake", 1);
+            }
+            mDB.updateOneInDB(pic, "1Involve", 1);
+         }
+         // If we are talking about the second kind of questions
+         else {
+            addRate(userAnswer.wrapperOfAnswers()[picIndex - 1],pic);
+         }
          picIndex++;
       }
    }
@@ -89,19 +50,19 @@ public class mainService {
    public void addRate(String result, String pic) {
       switch (result) {
          case "One":
-            mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Rate",1)));
+            mDB.updateOneInDB(pic, "Rate", 1);
             break;
          case "Two":
-            mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Rate",2)));
+            mDB.updateOneInDB(pic, "Rate", 2);
             break;
          case "Three":
-            mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Rate",3)));
+            mDB.updateOneInDB(pic, "Rate", 3);
             break;
          case "Four":
-            mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("Rate",4)));
+            mDB.updateOneInDB(pic, "Rate", 4);
             break;
       }
-      mDB.getTable().updateOne(Filters.eq("pic", pic), new Document("$inc",new Document("2Involve",1)));
+      mDB.updateOneInDB(pic, "2Involve", 1);
    }
 
    public Map<String, Map<String, Integer>> getResults() {

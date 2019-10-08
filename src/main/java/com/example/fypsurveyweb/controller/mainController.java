@@ -30,14 +30,17 @@ public class mainController {
    @RequestMapping(value = "/surveyForm", method = RequestMethod.GET)
    public String formPage(Model model) {
 
+      // init database in the beginning
       if (FypSurveyWebApplication.initFlag) {
          System.out.println("Init Database!");
          ms.initDB();
          FypSurveyWebApplication.initFlag = false;
       }
 
+      // init 10 random image names
       rgin.initRandomNames();
 
+      // Add info into the index web page
       model.addAttribute("imageNamesFrontend", rgin.getImageNamesFrontend());
       model.addAttribute("RealText", "It is Real.");
       model.addAttribute("FakeText", "It is Colourised by AI.");
@@ -47,7 +50,7 @@ public class mainController {
       model.addAttribute("ThreeStarText", "* * *");
       model.addAttribute("FourStarText", "* * * *");
 
-
+      // Return the index web page to the browser
       return "index";
    }
 

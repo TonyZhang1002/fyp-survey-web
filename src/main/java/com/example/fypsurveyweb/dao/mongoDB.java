@@ -22,7 +22,6 @@ public class mongoDB {
    // This method is used to keep the connection with the database
    public MongoCollection<Document> getTable () {
       MongoDatabase db = mongo.getDatabase("usersAnswers");
-
       return db.getCollection("user");
    }
 
@@ -38,6 +37,10 @@ public class mongoDB {
          }
       }
       table.insertMany(documents);
+   }
+
+   public void updateOneInDB(String picBackend, String key, int value) {
+      getTable().updateOne(Filters.eq("pic", picBackend), new Document("$inc",new Document(key,value)));
    }
 
 }
