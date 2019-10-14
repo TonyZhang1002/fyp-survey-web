@@ -2,7 +2,7 @@
 
 This is a web application for the user study in Final Year Project —— "Deep-colorization". 100 true colorful images with three different colorization approaches applied, there are, overall, 400 images in the library. 
 
-To run this application in docker, simply run in this command (You don't even need to clone this repo):
+To run this application in docker, simply run in this command (You don't even need to build or package this project):
 
 `docker-compose up`
 
