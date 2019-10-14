@@ -2,12 +2,12 @@
 
 This is a web application for the user study in Final Year Project —— "Deep-colorization". 100 true colorful images with three different colorization approaches applied, there are, overall, 400 images in the library. 
 
-To run this in docker, simply type in these three command:
+To run this application in docker, simply type in this command:
 
-`docker network create -d bridge survey`
+`docker-compose up`
 
-`docker run -p 27018:27017 --name db --network survey -d mongo:latest`
+After that, service can be found on `localhost:8081/surveyForm` or `<Your IP>:8081/surveyForm`
 
-`docker run -p 8081:8080 --name web --network survey -d tonyzhang1002/fyp-survey:web`
+To stop this in docker, simply type in this command:
 
-After that, service can be found on `localhost:8081/surveyForm`
+`docker-compose down`
